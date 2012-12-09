@@ -1,0 +1,14 @@
+development:
+  adapter: sqlite3
+  database: db/developmnet.sqlite3
+  pool: 5
+
+production:
+   adapter: sqlite3
+   database: db/developmnet.sqlite3
+   pool: 5
+
+test:
+    adapter: sqlite3
+    database: db/developmnet.sqlite3
+    pool: 5

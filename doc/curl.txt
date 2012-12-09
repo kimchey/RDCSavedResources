@@ -1,0 +1,68 @@
+Sample curls
+------------
+
+1) Create new Member and associated saved_resources:
+
+curl -XPOST http://localhost:3000/saved_resources/create -d '
+  {
+      "member": {
+          "member_id": 3,
+          "saved_resources": [
+              {
+                  "resource_id": "123",
+                  "resource_type": "Rental",
+                  "description": "Test resource",
+                  "version": "1.0",
+                  "query_string": "beds=1.0&baths=2.9"
+              }
+          ]
+      }
+  }'   -H "Accept: application/json" -H "Content-Type: application/json"
+
+
+2) Show a member:
+
+curl -XGET http://localhost:3000/saved_resources/show/1
+
+
+3) Update Member's saved resources:
+
+curl -XPUT http://localhost:3000/saved_resources/update/1 -d '
+{
+  "saved_resource": {
+      "id": "50a6fc9e6cde546b46000002",
+      "description": "Added description to rental"
+     }
+}' -H "Accept: application/json" -H "Content-Type: application/json"
+
+
+4) Delete Member (Note: will also delete saved resources
+
+curl -XDELETE http://localhost:3000/saved_resources/delete/2
+
+
+5) Delete a specific resource given a resource id:
+
+curl -XPUT http://localhost:3000/saved_resources/remove_resource/1 -d '
+{
+      "id": "50a6fc9e6cde546b46000002"
+}' -H "Accept: application/json" -H "Content-Type: application/json"
+
+
+6) Add resource(s) to a member:
+
+curl -XPUT http://localhost:3000/saved_resources/add_resources/1 -d '
+{
+  "saved_resources":[
+            {
+                "description": "This is my first saved Rental resource",
+                "resource_type": "Rental",
+                "resource_id": "abc-rental-id"
+            },
+            {
+                "description": "This is my first saved Listing resource",
+                "resource_type": "Listing",
+                "resource_id": "abc-listing-id"
+            }
+          ]
+}' -H "Accept: application/json" -H "Content-Type: application/json"
